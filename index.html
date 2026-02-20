@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alejandro Illes | Product Manager - Product Owner</title>
+    <title>Alejandro Illes | Product Leader & Strategist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script>
@@ -30,10 +30,9 @@
             height: 20px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .lang-btn { transition: all 0.3s ease; }
+        .lang-btn.active { color: #2563eb; font-weight: 700; border-bottom: 2px solid #2563eb; }
     </style>
 </head>
 <body class="bg-light text-primary antialiased">
@@ -42,13 +41,20 @@
     <nav class="fixed w-full bg-white/90 backdrop-blur-sm border-b border-slate-200 z-50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
             <span class="font-bold text-xl tracking-tight">Alejandro Illes</span>
-            <div class="hidden md:flex gap-6 text-sm font-medium text-secondary">
-                <a href="#about" class="hover:text-accent transition-colors">About</a>
-                <a href="#experience" class="hover:text-accent transition-colors">Experience</a>
-                <a href="#achievements" class="hover:text-accent transition-colors">Achievements</a>
-                <a href="#skills" class="hover:text-accent transition-colors">Skills</a>
-                <a href="#ai-demo" class="hover:text-accent transition-colors">AI Demo</a>
-                <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-6 text-sm font-medium text-secondary">
+                    <a href="#about" data-i18n="nav-about" class="hover:text-accent transition-colors">About</a>
+                    <a href="#experience" data-i18n="nav-experience" class="hover:text-accent transition-colors">Experience</a>
+                    <a href="#achievements" data-i18n="nav-achievements" class="hover:text-accent transition-colors">Achievements</a>
+                    <a href="#skills" data-i18n="nav-skills" class="hover:text-accent transition-colors">Skills</a>
+                    <a href="#ai-demo" data-i18n="nav-ai" class="hover:text-accent transition-colors">AI Demo</a>
+                </div>
+                <!-- Language Toggle -->
+                <div class="flex items-center border-l border-slate-300 pl-4 gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
+                    <button onclick="changeLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+                    <span>|</span>
+                    <button onclick="changeLanguage('es')" id="btn-es" class="lang-btn">ES</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -56,22 +62,19 @@
     <!-- Hero Section -->
     <header id="about" class="pt-32 pb-20 px-6 max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-12">
-            <!-- Profile Image -->
             <div class="shrink-0">
                 <img src="profile.jpg" alt="Alejandro Illes" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-white shadow-lg" onerror="this.src='https://ui-avatars.com/api/?name=Alejandro+Illes&background=0f172a&color=fff&size=256'">
             </div>
-            
-            <!-- Text Content -->
             <div class="text-center md:text-left">
                 <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-                    Bridging the gap between <br class="hidden xl:block">
-                    <span class="text-accent">technical feasibility</span> & <span class="text-accent">business value.</span>
+                    <span data-i18n="hero-title-1">Bridging the gap between</span> <br class="hidden xl:block">
+                    <span class="text-accent" data-i18n="hero-title-accent-1">technical feasibility</span> & <span class="text-accent" data-i18n="hero-title-accent-2">business value</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-secondary font-light max-w-3xl mb-8">
+                <p class="text-lg md:text-xl text-secondary font-light max-w-3xl mb-8 leading-relaxed" data-i18n="hero-desc">
                     Product Manager | Product Owner with 20 years of experience leading the full product lifecycle. Specialist in transforming business needs into high-impact technological solutions, ensuring technical execution aligns with strategic goals and resource optimization. Multi-sector expertise including FinTech, e-Commerce, and Health Care, among others, with a current focus on Generative AI solutions and results-oriented roadmaps.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-                    <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary transition-colors">
+                    <a href="#contact" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary transition-colors" data-i18n="hero-cta">
                         Get in touch
                     </a>
                     <a href="https://www.linkedin.com/in/alejandroilles/" target="_blank" class="flex items-center gap-2 border border-slate-300 bg-white px-6 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors">
@@ -82,25 +85,25 @@
         </div>
     </header>
 
-    <!-- Product Philosophy (Extra Section) -->
+    <!-- Product Philosophy -->
     <section class="py-16 bg-white px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-10">Product Philosophy</h2>
+            <h2 class="text-3xl font-bold mb-10" data-i18n="phil-title">Product Philosophy</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-6 border border-slate-200 rounded-xl bg-slate-50">
                     <i class="ph ph-strategy text-3xl text-accent mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Strategic Alignment</h3>
-                    <p class="text-secondary text-sm">Translating high-level business goals into actionable roadmaps. Focusing on the "why" before the "how".</p>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="phil-1-t">Strategic Alignment</h3>
+                    <p class="text-secondary text-sm" data-i18n="phil-1-d">Translating high-level business goals into actionable roadmaps. Focusing on the "why" before the "how".</p>
                 </div>
                 <div class="p-6 border border-slate-200 rounded-xl bg-slate-50">
                     <i class="ph ph-buildings text-3xl text-accent mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Domain Adaptability</h3>
-                    <p class="text-secondary text-sm">Proven track record delivering value in varied environments: Gen AI, EdTech, e-Commerce, FinTech, Health Care, Marketing, and Retail.</p>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="phil-2-t">Domain Adaptability</h3>
+                    <p class="text-secondary text-sm" data-i18n="phil-2-d">Proven track record delivering value in varied environments: Gen AI, EdTech, e-Commerce, FinTech, Health Care, Marketing, and Retail.</p>
                 </div>
                 <div class="p-6 border border-slate-200 rounded-xl bg-slate-50">
                     <i class="ph ph-rocket-launch text-3xl text-accent mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Delivery Discipline</h3>
-                    <p class="text-secondary text-sm">Rooted in almost 20 years of project management. Ensuring consistent, high-quality, and timely MVP launches.</p>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="phil-3-t">Delivery Discipline</h3>
+                    <p class="text-secondary text-sm" data-i18n="phil-3-d">Rooted in almost 20 years of project management. Ensuring consistent, high-quality, and timely MVP launches.</p>
                 </div>
             </div>
         </div>
@@ -108,21 +111,21 @@
 
     <!-- Experience Section -->
     <section id="experience" class="py-20 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12">Professional Experience</h2>
-        
+        <h2 class="text-3xl font-bold mb-12" data-i18n="exp-title">Professional Experience</h2>
         <div class="border-l-2 border-slate-200 ml-3 space-y-12">
             <!-- Job 1 -->
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
-                    <h3 class="text-xl font-bold">Product Manager / Product Owner</h3>
+                    <h3 class="text-xl font-bold" data-i18n="job-1-title">Product Manager / Product Owner</h3>
                     <span class="text-accent font-medium">@ Nubity</span>
                 </div>
-                <div class="text-sm text-slate-500 font-medium mb-4">Oct 2024 - Present</div>
-                <ul class="list-disc pl-5 text-secondary space-y-2">
-                    <li>Lead the end-to-end lifecycle of AI products and solutions, combining project execution with strategic product leadership.</li>
-                    <li>Define AI roadmaps aligned with business goals and deliver advanced analytics solutions for the financial sector.</li>
-                    <li>Coordinate cross-functional teams and stakeholders to launch high-impact MVPs, focusing on Generative AI solutions.</li>
+                <div class="text-sm text-slate-500 font-medium mb-4" data-i18n="job-1-date">Oct 2024 - current</div>
+                <ul class="list-disc pl-5 text-secondary space-y-2 text-sm" data-i18n="job-1-desc">
+                    <li>Product Discovery & Pre-sales for high-impact AI/Cloud portfolios.</li>
+                    <li>E2E Roadmap: AI solutions reducing operational latency by 15%.</li>
+                    <li>Agile Iterations: Implementation of bi-weekly cycles with measurable deliverables to ensure continuous value.</li>
+                    <li>KPI-Led Stakeholder Management: Reporting to C-Level on 95% delivery predictability.</li>
                 </ul>
             </div>
 
@@ -130,14 +133,15 @@
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
-                    <h3 class="text-xl font-bold">SR Technical Project Manager / Scrum Master</h3>
+                    <h3 class="text-xl font-bold" data-i18n="job-2-title">Technical Project Manager / Scrum Master</h3>
                     <span class="text-accent font-medium">@ PSH</span>
                 </div>
-                <div class="text-sm text-slate-500 font-medium mb-4">Nov 2021 - Nov 2024</div>
-                <ul class="list-disc pl-5 text-secondary space-y-2">
-                    <li>Led and mentored cross-functional teams to deliver projects on time and within budget using agile methodologies.</li>
-                    <li>Defined requirements with business analysts, managed scope and budgets, and solved complex project challenges.</li>
-                    <li>Oversaw multiple initiatives simultaneously, built strong client relationships, and drove cross-functional collaboration.</li>
+                <div class="text-sm text-slate-500 font-medium mb-4" data-i18n="job-2-date">OCT 2021 - Oct 2024</div>
+                <ul class="list-disc pl-5 text-secondary space-y-2 text-sm" data-i18n="job-2-desc">
+                    <li>Mentored teams to improve sprint velocity by 25% within 12 months.</li>
+                    <li>Managed backlogs for products with high-volume active user bases.</li>
+                    <li>Reduced time-to-market for key features by 30% through improved prioritization.</li>
+                    <li>Enabled data-driven validation, reducing post-launch rework costs by 18%.</li>
                 </ul>
             </div>
 
@@ -145,14 +149,15 @@
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
-                    <h3 class="text-xl font-bold">Project Delivery Manager</h3>
+                    <h3 class="text-xl font-bold text-gray-900" data-i18n="job-3-title">Delivery Manager</h3>
                     <span class="text-accent font-medium">@ Argano</span>
                 </div>
-                <div class="text-sm text-slate-500 font-medium mb-4">Jan 2013 - Oct 2021</div>
-                <ul class="list-disc pl-5 text-secondary space-y-2">
-                    <li>Managed end-to-end delivery of web, mobile (native and hybrid), e-commerce, and software projects for US clients.</li>
-                    <li>Led pre-sales discovery and proposals, defined scope and budgets, and built trusted client partnerships.</li>
-                    <li>Coordinated cross-functional teams including UX/UI, engineering, DevOps, and marketing.</li>
+                <div class="text-sm text-slate-500 font-medium mb-4" data-i18n="job-3-date">ene 2013 - Oct 2024</div>
+                <ul class="list-disc pl-5 text-secondary space-y-2 text-sm" data-i18n="job-3-desc">
+                    <li>E2E Product Delivery: Managing large-scale complex projects and resource allocation.</li>
+                    <li>Pre-sales Leadership: Contributed to a significant increase in proposal win rate.</li>
+                    <li>Cross-functional alignment for projects spanning multiple time zones and cultures.</li>
+                    <li>Optimization of business value through KPI-tracked continuous improvement cycles.</li>
                 </ul>
             </div>
         </div>
@@ -161,142 +166,70 @@
     <!-- Achievements Section -->
     <section id="achievements" class="py-20 bg-white px-6 border-t border-slate-100">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12">Key Achievements & Impact</h2>
-            
+            <h2 class="text-3xl font-bold mb-12" data-i18n="ach-title">Key Achievements & Impact</h2>
             <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
-                <!-- Achievement 1 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-trend-up text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Value Creation & Scaling</h3>
-                        <p class="text-secondary text-sm">Proven ability to scale projects organically by focusing on measurable outcomes. I establish long-term projections to ensure continuous delivery of business value.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-magnifying-glass text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-1-t">Discovery & Product Validation</h3><p class="text-secondary text-sm" data-i18n="ach-1-d">Reduced rework costs by 30% through rigorous Discovery phases, ensuring engineering resources were allocated only to high-impact validated features.</p></div>
                 </div>
-
-                <!-- Achievement 2 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-users-three text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Team Building & Mentorship</h3>
-                        <p class="text-secondary text-sm">Built and structured high-performing teams. Provided strategic consulting and career path mentoring to foster professional growth within technical departments.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-chart-line-up text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-2-t">Business Impact & ROI Focus</h3><p class="text-secondary text-sm" data-i18n="ach-2-d">Managed product portfolios that contributed to double-digit increase in conversion rates for E-commerce and FinTech platforms.</p></div>
                 </div>
-
-                <!-- Achievement 3 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-kanban text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Agile Processes & Reporting</h3>
-                        <p class="text-secondary text-sm">Implemented robust documentation and reporting systems from scratch. Managed Agile ceremonies to establish predictability and transparency across all stakeholder levels.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-sparkle text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-3-t">AI Strategy & Efficiency</h3><p class="text-secondary text-sm" data-i18n="ach-3-d">Integrated GenAI solutions resulting in a 45% reduction in manual data processing time for back-office operations.</p></div>
                 </div>
-
-                <!-- Achievement 4 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-robot text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Educational Mentorship</h3>
-                        <p class="text-secondary text-sm">Served as a Robotics teacher using Arduino for primary and secondary schools. This experience honed my ability to explain complex technical concepts to non-technical audiences.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-users-three text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-4-t">High-Performance Leadership</h3><p class="text-secondary text-sm" data-i18n="ach-4-d">Led cross-functional teams of 20+ professionals, maintaining an 85% team retention rate while improving delivery cycles by 25%.</p></div>
                 </div>
-
-                <!-- Achievement 5 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-brain text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Self-Taught & AI Enthusiast</h3>
-                        <p class="text-secondary text-sm">Highly proactive in learning emerging technologies independently. As a passionate AI advocate, I continuously research Generative AI trends to uncover new business opportunities and integrate them into product roadmaps.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-kanban text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-5-t">Strategic Prioritization</h3><p class="text-secondary text-sm" data-i18n="ach-5-d">Optimized backlogs using RICE framework, increasing the delivery rate of "High Business Value" features from 40% to 75% in two quarters.</p></div>
                 </div>
-
-                <!-- Achievement 6 -->
                 <div class="flex gap-4">
-                    <div class="shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent">
-                            <i class="ph ph-compass-tool text-xl"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Discovery & Gap Reduction</h3>
-                        <p class="text-secondary text-sm">Led pre-sales and product discovery sessions to align business needs with technical feasibility. Minimized delivery gaps by implementing precise scoping and Agile methodologies, effectively mitigating risks before development phases.</p>
-                    </div>
+                    <div class="shrink-0 mt-1"><div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-accent"><i class="ph ph-presentation-chart text-xl"></i></div></div>
+                    <div><h3 class="font-bold text-lg mb-2" data-i18n="ach-6-t">Strategic Stakeholder Management</h3><p class="text-secondary text-sm" data-i18n="ach-6-d">Accelerated C-Level decision-making cycles by 50% through automated real-time reporting and KPI dashboard implementations.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills & Education -->
-    <section id="skills" class="py-20 bg-slate-50 px-6">
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-slate-50 px-6 text-sm">
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-            
-            <!-- Skills & Certs -->
             <div>
-                <h2 class="text-2xl font-bold mb-6">Skills & Certifications</h2>
+                <h2 class="text-2xl font-bold mb-6" data-i18n="skill-title">Skills & Certifications</h2>
                 <div class="mb-8">
-                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Core Competencies</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md text-sm font-medium">Product Strategy</span>
-                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md text-sm font-medium">Agile / Scrum</span>
-                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md text-sm font-medium">Team Leadership</span>
-                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md text-sm font-medium">Project Management</span>
-                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md text-sm font-medium">Cross-functional Coordination</span>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Industries & Markets</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">Gen AI</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">FinTech</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">e-Commerce</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">Health Care</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">EdTech</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">Marketing</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">Retail</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">AWS services</span>
-                        <span class="bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium">WordPress</span>
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3" data-i18n="skill-core">Core Competencies</h4>
+                    <div class="flex flex-wrap gap-2 font-medium">
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">Product Discovery</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">Backlog Prioritization (RICE/MoSCoW)</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">Agile / Scrum / Kanban</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">Stakeholder Management</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">MVP Strategy</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-md">KPI & Metric Definition</span>
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Certifications</h4>
-                    <ul class="space-y-2 text-secondary text-sm">
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Product Owner Fundamentals</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Practical Product Owner</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> User Stories in Scrum</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Professional Scrum</li>
-                    </ul>
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3" data-i18n="skill-industries">Industries</h4>
+                    <div class="flex flex-wrap gap-2 text-slate-700">
+                        <span class="bg-slate-200 px-3 py-1 rounded-md">Gen AI</span>
+                        <span class="bg-slate-200 px-3 py-1 rounded-md">FinTech</span>
+                        <span class="bg-slate-200 px-3 py-1 rounded-md">e-Commerce</span>
+                        <span class="bg-slate-200 px-3 py-1 rounded-md">Health Care</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- Education -->
             <div>
-                <h2 class="text-2xl font-bold mb-6">Education</h2>
+                <h2 class="text-2xl font-bold mb-6" data-i18n="edu-title">Education</h2>
                 <div class="bg-white p-6 rounded-xl border border-slate-200">
                     <h3 class="font-bold text-lg">Maimónides University</h3>
-                    <p class="text-accent text-sm font-medium mb-2">Bachelor's Degree in Multimedia Technology, Marketing & Communication</p>
+                    <p class="text-accent text-sm font-medium mb-2" data-i18n="edu-degree">Bachelor's Degree in Multimedia Technology, Marketing & Communication</p>
                     <p class="text-slate-500 text-sm">2007 - 2013</p>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -305,144 +238,188 @@
         <div class="max-w-4xl mx-auto">
             <div class="flex items-center gap-3 mb-6">
                 <i class="ph ph-sparkle text-3xl text-blue-400"></i>
-                <h2 class="text-3xl font-bold">Interactive Product Strategist</h2>
+                <h2 class="text-3xl font-bold" data-i18n="ai-title">Interactive Product Strategist</h2>
             </div>
-            <p class="text-slate-300 mb-8">
-                Want to see how I think? Give me a raw product idea, and my AI twin (powered by Gemini) will generate a high-level MVP strategy, focusing on business value and agile delivery.
+            <p class="text-slate-300 mb-8" data-i18n="ai-desc">
+                Want to see how I think? Give me a raw product idea, and my AI twin (powered by Gemini) will generate a high-level MVP strategy.
             </p>
-
             <div class="bg-slate-900/50 border border-slate-700 p-6 rounded-xl backdrop-blur-sm">
-                <label for="product-idea" class="block text-sm font-medium text-slate-300 mb-2">Enter a Product Idea (e.g., "A fintech app for teenagers"):</label>
+                <label for="product-idea" class="block text-sm font-medium text-slate-300 mb-2" data-i18n="ai-label">Enter a Product Idea:</label>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <input type="text" id="product-idea" class="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors" placeholder="Type your idea here...">
-                    <button id="generate-btn" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                        ✨ Generate Strategy
+                    <input type="text" id="product-idea" class="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors text-sm" data-i18n-placeholder="ai-placeholder" placeholder="Type your idea here...">
+                    <button id="generate-btn" onclick="generateStrategy()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <span data-i18n="ai-btn">✨ Generate Strategy</span>
                     </button>
                 </div>
-                
-                <!-- Output Container -->
                 <div id="ai-output-container" class="mt-6 hidden">
                     <div class="h-px w-full bg-slate-700 mb-6"></div>
-                    <h3 class="text-lg font-semibold text-blue-400 mb-3">MVP Strategy Proposal:</h3>
-                    <div id="ai-output" class="text-slate-200 text-sm leading-relaxed space-y-4">
-                        <!-- Content goes here -->
-                    </div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-3" data-i18n="ai-result-title">MVP Strategy Proposal:</h3>
+                    <div id="ai-output" class="text-slate-200 text-sm leading-relaxed space-y-4"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer / Contact -->
+    <!-- Footer -->
     <footer id="contact" class="bg-primary text-white py-10 px-6 text-center">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold mb-3">Let's build something impactful.</h2>
-            <p class="text-slate-300 text-sm mb-6">Looking for a strategic leader who drives both technical execution and business strategy? Let's connect.</p>
-            
+            <h2 class="text-2xl font-bold mb-3" data-i18n="footer-title">Let's build something impactful.</h2>
+            <p class="text-slate-300 text-sm mb-6" data-i18n="footer-desc">Looking for a strategic leader who drives technical execution? Let's connect.</p>
             <div class="flex justify-center gap-6">
-                <a href="mailto:illes.ale@gmail.com" class="flex flex-col items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center">
-                        <i class="ph ph-envelope-simple text-xl"></i>
-                    </div>
+                <a href="mailto:illes.ale@gmail.com" class="flex flex-col items-center gap-1 text-slate-300 hover:text-white transition-colors">
+                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-xl"><i class="ph ph-envelope-simple"></i></div>
                     <span class="text-xs">Email</span>
                 </a>
-                <a href="https://www.linkedin.com/in/alejandroilles/" target="_blank" class="flex flex-col items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center">
-                        <i class="ph ph-linkedin-logo text-xl"></i>
-                    </div>
+                <a href="https://www.linkedin.com/in/alejandroilles/" target="_blank" class="flex flex-col items-center gap-1 text-slate-300 hover:text-white transition-colors">
+                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-xl"><i class="ph ph-linkedin-logo"></i></div>
                     <span class="text-xs">LinkedIn</span>
                 </a>
-                <div class="flex flex-col items-center gap-2 text-slate-300">
-                    <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center">
-                        <i class="ph ph-map-pin text-xl"></i>
-                    </div>
-                    <span class="text-xs">Buenos Aires, AR</span>
-                </div>
             </div>
-            
             <div class="mt-8 text-xs text-slate-500">
                 &copy; <script>document.write(new Date().getFullYear())</script> Alejandro Illes.
             </div>
         </div>
     </footer>
 
-    <!-- Gemini API Integration Script -->
     <script>
-        const apiKey = ""; // La clave de API se inyecta en tiempo de ejecución en este entorno.
+        const apiKey = ""; 
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                "nav-about": "About", "nav-experience": "Experience", "nav-achievements": "Achievements", "nav-skills": "Skills", "nav-ai": "AI Demo",
+                "hero-title-1": "Bridging the gap between", "hero-title-accent-1": "technical feasibility", "hero-title-accent-2": "business value",
+                "hero-desc": "Product Manager | Product Owner with 20 years of experience leading the full product lifecycle. Specialist in transforming business needs into high-impact technological solutions, ensuring technical execution aligns with strategic goals and resource optimization. Multi-sector expertise including FinTech, e-Commerce, and Health Care, among others, with a current focus on Generative AI solutions and results-oriented roadmaps.",
+                "hero-cta": "Get in touch",
+                "phil-title": "Product Philosophy",
+                "phil-1-t": "Strategic Alignment", "phil-1-d": "Translating high-level business goals into actionable roadmaps. Focusing on the 'why' before the 'how'.",
+                "phil-2-t": "Domain Adaptability", "phil-2-d": "Proven track record delivering value in varied environments: Gen AI, EdTech, e-Commerce, FinTech, Health Care, Marketing, and Retail.",
+                "phil-3-t": "Delivery Discipline", "phil-3-d": "Rooted in almost 20 years of project management. Ensuring consistent, high-quality, and timely MVP launches.",
+                "exp-title": "Professional Experience",
+                "job-1-title": "Product Manager / Product Owner", 
+                "job-1-date": "Oct 2024 - current", 
+                "job-1-desc": "<li>Product Discovery & Pre-sales for high-impact AI/Cloud portfolios.</li><li>E2E Roadmap: AI solutions reducing operational latency by 15%.</li><li>Agile Iterations: Implementation of bi-weekly cycles with measurable deliverables to ensure continuous value.</li><li>KPI-Led Stakeholder Management: Reporting to C-Level on 95% delivery predictability.</li>",
+                "job-2-title": "Technical Project Manager / Scrum Master", 
+                "job-2-date": "OCT 2021 - Oct 2024", 
+                "job-2-desc": "<li>Mentored teams to improve sprint velocity by 25% within 12 months.</li><li>Managed backlogs for products with high-volume active user bases.</li><li>Reduced time-to-market for key features by 30% through improved prioritization.</li><li>Enabled data-driven validation, reducing post-launch rework costs by 18%.</li>",
+                "job-3-title": "Delivery Manager", 
+                "job-3-date": "ene 2013 - Oct 2024", 
+                "job-3-desc": "<li>E2E Product Delivery: Managing large-scale complex projects and resource allocation.</li><li>Pre-sales Leadership: Contributed to a significant increase in proposal win rate.</li><li>Cross-functional alignment for projects spanning multiple time zones and cultures.</li><li>Optimization of business value through KPI-tracked continuous improvement cycles.</li>",
+                "ach-title": "Key Achievements & Impact",
+                "ach-1-t": "Discovery & Product Validation", "ach-1-d": "Reduced rework costs by 30% through rigorous Discovery phases, ensuring engineering resources were allocated only to high-impact validated features.",
+                "ach-2-t": "Business Impact & ROI Focus", "ach-2-d": "Managed product portfolios that contributed to double-digit increase in conversion rates for E-commerce and FinTech platforms.",
+                "ach-3-t": "AI Strategy & Efficiency", "ach-3-d": "Integrated GenAI solutions resulting in a 45% reduction in manual data processing time for back-office operations.",
+                "ach-4-t": "High-Performance Leadership", "ach-4-d": "Led cross-functional teams of 20+ professionals, maintaining an 85% team retention rate while improving delivery cycles by 25%.",
+                "ach-5-t": "Strategic Prioritization", "ach-5-d": "Optimized backlogs using RICE framework, increasing the delivery rate of 'High Business Value' features from 40% to 75% in two quarters.",
+                "ach-6-t": "Strategic Stakeholder Management", "ach-6-d": "Accelerated C-Level decision-making cycles by 50% through automated real-time reporting and KPI dashboard implementations.",
+                "skill-title": "Skills & Certifications", "skill-core": "Core Competencies", "skill-industries": "Industries",
+                "edu-title": "Education", "edu-degree": "Bachelor's Degree in Multimedia Technology, Marketing & Communication",
+                "ai-title": "Interactive Product Strategist", "ai-desc": "Want to see how I think? Give me a raw product idea, and my AI twin (powered by Gemini) will generate a high-level MVP strategy.",
+                "ai-label": "Enter a Product Idea:", "ai-placeholder": "Type your idea here...", "ai-btn": "✨ Generate Strategy", "ai-result-title": "MVP Strategy Proposal:", "ai-loading": "Analyzing market...",
+                "footer-title": "Let's build something impactful.", "footer-desc": "Looking for a strategic leader who drives technical execution? Let's connect.", "footer-loc": "Buenos Aires, AR"
+            },
+            es: {
+                "nav-about": "Sobre mí", "nav-experience": "Experiencia", "nav-achievements": "Logros", "nav-skills": "Habilidades", "nav-ai": "Demo IA",
+                "hero-title-1": "Cerrando la brecha entre", "hero-title-accent-1": "factibilidad técnica", "hero-title-accent-2": "valor de negocio",
+                "hero-desc": "Product Manager | Product Owner con 20 años de experiencia liderando el ciclo de vida completo del producto. Especialista en transformar necesidades de negocio en soluciones tecnológicas de alto impacto, asegurando que la ejecución técnica se alinee con los objetivos estratégicos y la optimización de recursos. Experiencia multisectorial que incluye FinTech, e-Commerce y Salud, entre otros, con un enfoque actual en soluciones de IA Generativa y roadmaps orientados a resultados.",
+                "hero-cta": "Contactame",
+                "phil-title": "Filosofía de Producto",
+                "phil-1-t": "Alineación Estratégica", "phil-1-d": "Traducir objetivos de alto nivel en roadmaps accionables. Enfocándome en el 'por qué' antes que en el 'cómo'.",
+                "phil-2-t": "Adaptabilidad de Dominio", "phil-2-d": "Trayectoria comprobada entregando valor en diversos entornos: Gen AI, EdTech, e-Commerce, FinTech, Salud, Marketing y Retail.",
+                "phil-3-t": "Disciplina de Entrega", "phil-3-d": "Basada en casi 20 años de gestión de proyectos. Asegurando lanzamientos de MVP consistentes, oportunos y de alta calidad.",
+                "exp-title": "Experiencia Profesional",
+                "job-1-title": "Product Manager / Product Owner", 
+                "job-1-date": "Oct 2024 - actualidad", 
+                "job-1-desc": "<li>Discovery y Preventa para portafolios de AI/Cloud de alto impacto.</li><li>Roadmap E2E: Soluciones de IA que redujeron la latencia operativa en un 15%.</li><li>Iteraciones Ágiles: Implementación de ciclos quincenales con entregables medibles para asegurar valor continuo.</li><li>Gestión de Stakeholders basada en KPIs: Reportes a nivel C con 95% de predictibilidad.</li>",
+                "job-2-title": "Technical Project Manager / Scrum Master", 
+                "job-2-date": "OCT 2021 - Oct 2024", 
+                "job-2-desc": "<li>Mentoría de equipos mejorando la velocidad de sprint en un 25% en 12 meses.</li><li>Gestión de backlogs para productos con altos volúmenes de usuarios activos.</li><li>Reducción del time-to-market en un 30% mediante la optimización de prioridades.</li><li>Validación basada en datos, reduciendo costos de retrabajo post-lanzamiento en un 18%.</li>",
+                "job-3-title": "Delivery Manager", 
+                "job-3-date": "ene 2013 - Oct 2024", 
+                "job-3-desc": "<li>Entrega E2E: Gestión de proyectos complejos a gran escala y asignación de recursos.</li><li>Liderazgo en Preventa: Contribución al aumento significativo en la tasa de cierre de propuestas.</li><li>Alineación para proyectos con equipos en múltiples zonas horarias y culturas.</li><li>Optimización del valor de negocio mediante ciclos de mejora continua basados en KPIs.</li>",
+                "ach-title": "Logros Clave e Impacto",
+                "ach-1-t": "Discovery y Validación de Producto", "ach-1-d": "Reducción de costos de retrabajo en un 30% mediante fases de Discovery rigurosas, asegurando la asignación de recursos solo a funcionalidades validadas.",
+                "ach-2-t": "Impacto en Negocio y Foco en ROI", "ach-2-d": "Gestión de productos que contribuyeron a un aumento de doble dígito anual en las tasas de conversión para plataformas de E-commerce y FinTech.",
+                "ach-3-t": "Estrategia e Implementación de IA", "ach-3-d": "Integración de soluciones de IA Generativa resultando en una reducción del 45% en el tiempo de procesamiento manual de datos operativos.",
+                "ach-4-t": "Liderazgo de Alto Rendimiento", "ach-4-d": "Liderazgo de equipos de +20 profesionales, manteniendo una tasa de retención del 85% y mejorando los ciclos de entrega en un 25%.",
+                "ach-5-t": "Priorización Estratégica", "ach-5-d": "Optimización de backlogs con RICE, aumentando la entrega de funcionalidades de 'Alto Valor' del 40% al 75% en solo dos trimestres.",
+                "ach-6-t": "Gestión Estratégica de Stakeholders", "ach-6-d": "Aceleración de ciclos de decisión de nivel C en un 50% mediante reportes automatizados y tableros de control de KPIs.",
+                "skill-title": "Habilidades", "skill-core": "Competencias Clave", "skill-industries": "Industrias",
+                "edu-title": "Education", "edu-degree": "Licenciatura en Tecnología Multimedia, Marketing y Comunicación",
+                "ai-title": "Estratega de Producto Interactivo", "ai-desc": "¿Querés ver cómo pienso? Dame una idea de producto y mi gemelo de IA (Gemini) generará una estrategia de MVP enfocada en valor de negocio.",
+                "ai-label": "Ingresá una idea de producto:", "ai-placeholder": "Escribí tu idea acá...", "ai-btn": "✨ Generar Estrategia", "ai-result-title": "Propuesta de Estrategia MVP:", "ai-loading": "Analizando mercado...",
+                "footer-title": "Construyamos algo importante.", "footer-desc": "¿Buscás un líder estratégico que impulse la ejecución técnica? Conectemos.", "footer-loc": "Buenos Aires, AR"
+            }
+        };
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = translations[lang][key] || el.innerHTML;
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                el.placeholder = translations[lang][key] || el.placeholder;
+            });
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        }
 
         async function generateStrategy() {
             const inputField = document.getElementById('product-idea');
             const outputContainer = document.getElementById('ai-output-container');
             const outputText = document.getElementById('ai-output');
             const btn = document.getElementById('generate-btn');
-            const prompt = inputField.value.trim();
+            const promptText = inputField.value.trim();
+            if (!promptText) return;
 
-            if (!prompt) return;
-
-            // Update UI for loading state
-            btn.innerHTML = '<div class="spinner"></div> Thinking...';
+            btn.innerHTML = `<div class="spinner"></div> ${currentLang === 'en' ? 'Thinking...' : 'Pensando...'}`;
             btn.disabled = true;
             outputContainer.classList.remove('hidden');
-            outputText.innerHTML = '<p class="text-slate-400 animate-pulse">Analyzing market and defining MVP scope...</p>';
+            outputText.innerHTML = `<p class="text-slate-400 animate-pulse">${translations[currentLang]['ai-loading']}</p>`;
 
-            const systemInstruction = `You are representing Alejandro Illes, a Senior Product Owner and Agile Project Manager. 
+            const systemInstruction = `You are representing Alejandro Illes, a Senior Product Leader and Project Manager with 20 years of experience. 
             The user will give you a rough product idea. 
-            Write a highly professional, structured MVP Strategy for this idea. 
-            Format it with HTML tags (like <strong>, <ul>, <li>) for readability. 
-            Include 3 short sections: 
-            1. Business Value (Why do this?)
-            2. MVP Scope (Core features only)
-            3. Agile Delivery Plan (High-level sprint structure). 
-            Keep it under 150 words total, demonstrating a clear, outcome-driven Product Manager mindset.`;
+            Response MUST be in the language: ${currentLang.toUpperCase()}.
+            Write a professional, structured MVP Strategy. Format with HTML tags (<strong>, <ul>, <li>). 
+            Include 3 sections: Business Value, MVP Scope, and Agile Delivery Plan.`;
 
             const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
+                contents: [{ parts: [{ text: promptText }] }],
                 systemInstruction: { parts: [{ text: systemInstruction }] }
             };
 
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            let delayTime = 1000;
+            const retriesCount = 5;
 
-            // Implement exponential backoff for API robustness
-            let delay = 1000;
-            const retries = 5;
-            let success = false;
-
-            for (let i = 0; i < retries; i++) {
+            for (let i = 0; i < retriesCount; i++) {
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    
                     const data = await response.json();
-                    const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error generating strategy.";
-                    
-                    outputText.innerHTML = resultText.replace(/\n/g, '<br>');
-                    success = true;
+                    const result = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error.";
+                    outputText.innerHTML = result.replace(/\n/g, '<br>');
                     break; 
-
                 } catch (error) {
-                    if (i === retries - 1) {
-                        outputText.innerHTML = '<p class="text-red-400">Sorry, there was an issue generating the strategy. Please try again later.</p>';
-                        console.error("Gemini API Error:", error);
+                    if (i === retriesCount - 1) {
+                        outputText.innerHTML = `<p class="text-red-400">${currentLang === 'en' ? 'Error. Try again.' : 'Error. Intente de nuevo.'}</p>`;
                     } else {
-                        await new Promise(res => setTimeout(res, delay));
-                        delay *= 2;
+                        await new Promise(res => setTimeout(res, delayTime));
+                        delayTime *= 2;
                     }
                 }
             }
-
-            // Restore UI
-            btn.innerHTML = '✨ Generate Strategy';
+            btn.innerHTML = translations[currentLang]['ai-btn'];
             btn.disabled = false;
         }
 
-        document.getElementById('generate-btn').addEventListener('click', generateStrategy);
-        document.getElementById('product-idea').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') generateStrategy();
-        });
+        window.onload = () => changeLanguage('en');
     </script>
 </body>
 </html>
