@@ -33,14 +33,20 @@
         .lang-btn { transition: all 0.3s ease; }
         .lang-btn.active { color: #2563eb; font-weight: 700; border-bottom: 2px solid #2563eb; }
         .case-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .case-card:hover { transform: translateY(-5px); }
         .phil-card { transition: all 0.3s ease; }
         .phil-card:hover { border-color: #2563eb; background-color: #fff; }
+        
+        /* Estilos personalizados del carrusel */
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-container { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .dot { transition: all 0.3s ease; cursor: pointer; }
+        .dot.active { width: 1.5rem; background-color: #2563eb; }
     </style>
 </head>
 <body class="bg-light text-primary antialiased">
 
-    <!-- Navigation -->
+    <!-- Navegación -->
     <nav class="fixed w-full bg-white/90 backdrop-blur-sm border-b border-slate-200 z-50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
             <span class="font-bold text-xl tracking-tight">Alejandro Illes</span>
@@ -62,7 +68,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Sección Hero -->
     <header id="about" class="pt-32 pb-16 px-6 max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
             <div class="shrink-0">
@@ -102,12 +108,11 @@
         </div>
     </header>
 
-    <!-- Product Philosophy Section -->
+    <!-- Sección Filosofía de Producto -->
     <section id="philosophy" class="py-16 bg-white px-6 border-t border-slate-100">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-center text-3xl font-bold text-primary mb-12" data-i18n="phil-title">Product Philosophy</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1: Strategic Vision -->
                 <div class="phil-card p-8 border border-slate-100 rounded-2xl bg-slate-50">
                     <div class="text-accent mb-6">
                         <i class="ph ph-strategy text-4xl"></i>
@@ -117,7 +122,6 @@
                         Identifying high-value features that align with C-level goals to drive measurable business growth. I focus on the "why" to ensure every sprint delivers tangible ROI.
                     </p>
                 </div>
-                <!-- Card 2: Discovery -->
                 <div class="phil-card p-8 border border-slate-100 rounded-2xl bg-slate-50">
                     <div class="text-accent mb-6">
                         <i class="ph ph-magnifying-glass text-4xl"></i>
@@ -127,7 +131,6 @@
                         Reducing project risk by validating assumptions through market research and user feedback. I believe in failing fast during Discovery to succeed faster during Delivery.
                     </p>
                 </div>
-                <!-- Card 3: AI implementation -->
                 <div class="phil-card p-8 border border-slate-100 rounded-2xl bg-slate-50">
                     <div class="text-accent mb-6">
                         <i class="ph ph-cpu text-4xl"></i>
@@ -141,11 +144,10 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Sección Experiencia -->
     <section id="experience" class="py-20 px-6 max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold mb-12" data-i18n="exp-title">Professional Experience</h2>
         <div class="border-l-2 border-slate-200 ml-3 space-y-12">
-            <!-- Job 1: Nubity -->
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
@@ -161,7 +163,6 @@
                 </ul>
             </div>
 
-            <!-- Job 2: PSH -->
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
@@ -177,7 +178,6 @@
                 </ul>
             </div>
 
-            <!-- Job 3: Argano -->
             <div class="relative pl-6">
                 <div class="absolute w-3 h-3 bg-accent rounded-full -left-[7px] top-2"></div>
                 <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
@@ -189,130 +189,165 @@
                     <li class='ml-6'>Scalability: Designed and implemented standardized SOPs (Standard Operating Procedures) that allowed the department to scale its project capacity by 40% without increasing headcount.</li>
                     <li class='ml-6'>Quality Assurance: Achieved a 20% reduction in post-launch defects by integrating QA milestones earlier in the product development lifecycle.</li>
                     <li class='ml-6'>Resource Allocation: Optimized team utilization rates from 70% to 85% through data-driven capacity planning.</li>
-                    <li class='ml-6'>Client Retention: Directly contributed to a 15% increase in client renewal rates by ensuring high-quality delivery standards and transparent reporting.</li>
+                    <li class='ml-6'>Client Retention: Directly contributed to a 15% increase in client renewal rates by ensuring high-quality delivery standards.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section id="cases" class="py-20 bg-white px-6 border-t border-slate-100">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4" data-i18n="cases-title">Case Studies & Key Projects</h2>
-            <p class="text-secondary mb-12 max-w-2xl" data-i18n="cases-subtitle">Strategic leadership and high-impact delivery across diverse digital ecosystems.</p>
+    <!-- Sección Casos de Estudio (Carrusel Reactivo) -->
+    <section id="cases" class="py-20 bg-white px-6 border-t border-slate-100 overflow-hidden">
+        <div class="max-w-5xl mx-auto relative text-center md:text-left">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold mb-4" data-i18n="cases-title">Case Studies & Key Projects</h2>
+                <p class="text-secondary max-w-xl mx-auto md:mx-0" data-i18n="cases-subtitle">Strategic leadership and high-impact delivery across diverse digital ecosystems.</p>
+            </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="cases-carousel" class="carousel-container flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth">
                 
                 <!-- 1. Nearpod -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600">
-                            <i class="ph-bold ph-graduation-cap text-2xl"></i>
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600">
+                                <i class="ph-bold ph-graduation-cap text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Nearpod</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Nearpod</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-edtech">B2B SaaS | EdTech</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-nearpod-desc">Product lifecycle management for a global classroom engagement platform. Focused on feature scalability and B2B user experience.</p>
+                        <a href="https://nearpod.com/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-edtech">B2B SaaS | EdTech</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-nearpod-desc">Product lifecycle management for a global classroom engagement platform. Focused on feature scalability and B2B user experience.</p>
-                    <a href="https://nearpod.com/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
                 <!-- 2. Bridge Patient Portal -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-cyan-600">
-                            <i class="ph-bold ph-heartbeat text-2xl"></i>
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center text-cyan-600">
+                                <i class="ph-bold ph-heartbeat text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Bridge Patient Portal</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Bridge Patient Portal</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-health">B2B SaaS | Health Care</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-bridge-desc">Solution delivery for medical data interoperability. Ensuring compliance and streamlined workflows for provider-patient engagement.</p>
+                        <a href="https://bpp.bridgepatientportal.com/auth/login-portal" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-health">B2B SaaS | Health Care</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-bridge-desc">Solution delivery for medical data interoperability. Ensuring compliance and streamlined workflows for provider-patient engagement.</p>
-                    <a href="https://bpp.bridgepatientportal.com/auth/login-portal" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
                 <!-- 3. Pagos Digitales -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                            <i class="ph-bold ph-bank text-2xl"></i>
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+                                <i class="ph-bold ph-bank text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Pagos Digitales</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Pagos Digitales</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-fintech">Startup | FinTech</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-pagos-desc">End-to-end development of digital payment gateway infrastructure. Focus on transaction security, compliance, and developer-friendly APIs.</p>
+                        <a href="https://pagosdigitales.com.ar/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-fintech">Startup | FinTech</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-pagos-desc">End-to-end development of digital payment gateway infrastructure. Focus on transaction security, compliance, and developer-friendly APIs.</p>
-                    <a href="https://pagosdigitales.com.ar/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
-                <!-- 4. Posneo (Updated Icon) -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
-                            <i class="ph-bold ph-storefront text-2xl"></i>
+                <!-- 4. Posneo -->
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                                <i class="ph-bold ph-storefront text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Posneo</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Posneo</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-retail">B2B SaaS | Retail</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-posneo-desc">Digital point-of-sale ecosystem for merchants. Optimized merchant onboarding and inventory management flows for high-growth businesses.</p>
+                        <a href="https://posneo.com/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-retail">B2B SaaS | Retail</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-posneo-desc">Digital point-of-sale ecosystem for merchants. Optimized merchant onboarding and inventory management flows for high-growth businesses.</p>
-                    <a href="https://posneo.com/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
-                <!-- 5. Making Cosmetics (Updated Icon) -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">
-                            <i class="ph-bold ph-magic-wand text-2xl"></i>
+                <!-- 5. Making Cosmetics -->
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600">
+                                <i class="ph-bold ph-magic-wand text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Making Cosmetics</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Making Cosmetics</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-salesforce">Salesforce B2C + B2B</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-making-desc">E2E delivery of a complex Salesforce Commerce Cloud solution. Bridging the gap between wholesale (B2B) and retail (B2C) digital strategies.</p>
+                        <a href="https://www.makingcosmetics.com/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-salesforce">Salesforce B2C + B2B</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-making-desc">E2E delivery of a complex Salesforce Commerce Cloud solution. Bridging the gap between wholesale (B2B) and retail (B2C) digital strategies.</p>
-                    <a href="https://www.makingcosmetics.com/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
                 <!-- 6. Propac Agency -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600">
-                            <i class="ph-bold ph-megaphone text-2xl"></i>
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-rose-600">
+                                <i class="ph-bold ph-megaphone text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Propac Agency</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Propac Agency</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-marketing">Marketing | AdTech</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-propac-desc">Execution of data-driven marketing technologies for global brands. Resource planning and strategic project delivery.</p>
+                        <a href="https://www.propacagency.com/" target="_blank" class="flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-marketing">Marketing | AdTech</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-propac-desc">Execution of data-driven marketing technologies for global brands. Resource planning and strategic project delivery.</p>
-                    <a href="https://www.propacagency.com/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
                 <!-- 7. Wellnet -->
-                <div class="case-card p-6 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
-                            <i class="ph-bold ph-first-aid text-2xl"></i>
+                <div class="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] snap-start text-left">
+                    <div class="case-card h-full p-8 border border-slate-200 rounded-2xl bg-white shadow-sm flex flex-col hover:border-accent/50 transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
+                                <i class="ph-bold ph-first-aid text-2xl"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Wellnet</h3>
                         </div>
-                        <h3 class="font-bold text-lg">Wellnet</h3>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="case-tag-insurance">B2B WP | Health Insurance</span>
+                        <p class="text-sm text-secondary leading-relaxed mb-6 flex-grow" data-i18n="case-wellnet-desc">Product optimization for a leading medical insurance platform. Enhanced digital member experience and automated claims processing workflows.</p>
+                        <a href="https://www.wellnet.com.ar/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
+                            <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
+                        </a>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3" data-i18n="case-tag-insurance">B2B WP | Health Insurance</span>
-                    <p class="text-sm text-secondary leading-relaxed mb-4 flex-grow" data-i18n="case-wellnet-desc">Product optimization for a leading medical insurance platform. Enhanced digital member experience and automated claims processing workflows.</p>
-                    <a href="https://www.wellnet.com.ar/" target="_blank" class="mt-4 flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-wider">
-                        <i class="ph ph-link"></i> <span data-i18n="visit-site">Visit Site</span>
-                    </a>
                 </div>
 
+            </div>
+            
+            <!-- Controles del Carrusel Reactivos -->
+            <div class="flex flex-col items-center mt-12 gap-6">
+                <div class="flex gap-4">
+                    <button onclick="scrollCarousel(-1)" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-accent hover:text-accent hover:bg-white shadow-sm transition-all">
+                        <i class="ph ph-caret-left text-2xl"></i>
+                    </button>
+                    <button onclick="scrollCarousel(1)" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-accent hover:text-accent hover:bg-white shadow-sm transition-all">
+                        <i class="ph ph-caret-right text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Indicadores Visuales Reactivos -->
+                <div id="carousel-dots" class="flex gap-2">
+                    <div onclick="jumpToSlide(0)" class="dot w-2 h-2 rounded-full bg-accent active"></div>
+                    <div onclick="jumpToSlide(1)" class="dot w-2 h-2 rounded-full bg-slate-200"></div>
+                    <div onclick="jumpToSlide(2)" class="dot w-2 h-2 rounded-full bg-slate-200"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Sección Habilidades -->
     <section id="skills" class="py-20 bg-slate-50 px-6">
         <div class="max-w-5xl mx-auto">
             <div class="grid md:grid-cols-2 gap-12">
@@ -328,25 +363,6 @@
                         <span class="bg-white border border-slate-200 px-4 py-2 rounded-lg text-sm font-semibold text-secondary shadow-sm">Backlog Prioritization</span>
                         <span class="bg-white border border-slate-200 px-4 py-2 rounded-lg text-sm font-semibold text-secondary shadow-sm">AI Tooling & Automation</span>
                     </div>
-                    
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6" data-i18n="skill-industries">Industries & Markets</h4>
-                    <div class="flex flex-wrap gap-3 mb-10">
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">Gen AI</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">FinTech</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">e-Commerce</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">Health Care</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">EdTech</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">Retail</span>
-                        <span class="bg-slate-200/50 text-slate-600 px-3 py-1 rounded text-xs font-bold">WordPress</span>
-                    </div>
-
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6" data-i18n="skill-certs-label">Certifications</h4>
-                    <ul class="space-y-3 text-secondary text-sm font-medium">
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Product Owner Fundamentals</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Practical Product Owner</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> User Stories in Scrum</li>
-                        <li class="flex items-center gap-2"><i class="ph ph-certificate text-accent"></i> Professional Scrum</li>
-                    </ul>
                 </div>
 
                 <div>
@@ -364,7 +380,7 @@
         </div>
     </section>
 
-    <!-- AI Feature Section -->
+    <!-- Sección Demo IA -->
     <section id="ai-demo" class="py-20 bg-slate-800 text-white px-6">
         <div class="max-w-4xl mx-auto text-center">
             <div class="flex justify-center mb-6">
@@ -413,37 +429,21 @@
                 "hero-title-roles": "Product Manager | Product Owner | Project Manager",
                 "hero-title-tagline": "Driving Business Value through Strategic Delivery & Agile Excellence",
                 "summary-label": "Professional Summary",
-                "hero-desc": "Results-oriented Product & Project Professional with a strong background in strategic delivery and digital product management. I specialize in bridging the gap between complex business requirements and high-quality technical execution. With a proven track record of leading cross-functional teams under Agile methodologies, I focus on optimizing the product lifecycle, managing key stakeholder expectations, and driving scalable solutions that deliver measurable business value.",
+                "hero-desc": "Results-oriented Product & Project Professional with a strong background in strategic delivery and digital product management. I specialize in bridging the gap between complex business requirements and high-quality technical execution.",
                 "hero-cta": "Get in touch",
                 "phil-title": "Product Philosophy",
                 "phil-1-title": "Strategic Alignment & ROI",
-                "phil-1-desc": "Identifying high-value features that align with C-level goals to drive measurable business growth. I focus on the 'why' to ensure every sprint delivers tangible ROI.",
+                "phil-1-desc": "Identifying high-value features that align with C-level goals to drive measurable business growth.",
                 "phil-2-title": "Discovery & Validation",
-                "phil-2-desc": "Reducing project risk by validating assumptions through market research and user feedback. I believe in failing fast during Discovery to succeed faster during Delivery.",
+                "phil-2-desc": "Reducing project risk by validating assumptions through market research and user feedback.",
                 "phil-3-title": "AI Strategy Implementation",
-                "phil-3-desc": "Architecting AI-driven workflows and product features to optimize performance and operational efficiency. I lead teams to integrate GenAI solutions that solve real-world problems.",
+                "phil-3-desc": "Architecting AI-driven workflows and product features to optimize performance.",
                 "exp-title": "Professional Experience",
                 "cases-title": "Case Studies & Projects",
                 "cases-subtitle": "Strategic leadership and high-impact delivery across diverse digital ecosystems.",
-                "case-tag-insurance": "B2B WP | Health Insurance",
-                "case-tag-edtech": "B2B SaaS | EdTech",
-                "case-tag-fintech": "Startup | FinTech",
-                "case-tag-retail": "B2B SaaS | Retail",
-                "case-tag-salesforce": "Salesforce B2C + B2B",
-                "case-tag-health": "B2B SaaS | Health Care",
-                "case-tag-marketing": "Marketing | AdTech",
                 "visit-site": "Visit Site",
-                "case-wellnet-desc": "Product optimization for a leading medical insurance platform. Enhanced digital member experience and automated claims processing workflows.",
-                "case-nearpod-desc": "Product lifecycle management for a global classroom engagement platform. Focused on feature scalability and B2B user experience.",
-                "case-pagos-desc": "End-to-end development of digital payment gateway infrastructure. Focus on transaction security, compliance, and developer-friendly APIs.",
-                "case-posneo-desc": "Digital point-of-sale ecosystem for merchants. Optimized merchant onboarding and inventory management flows for high-growth businesses.",
-                "case-making-desc": "E2E delivery of a complex Salesforce Commerce Cloud solution. Bridging the gap between wholesale (B2B) and retail (B2C) digital strategies.",
-                "case-bridge-desc": "Solution delivery for medical data interoperability. Ensuring compliance and streamlined workflows for provider-patient engagement.",
-                "case-propac-desc": "Execution of data-driven marketing technologies for global brands. Resource planning and strategic project delivery.",
-                "skill-title": "Skills & Education", "skill-core": "Core Competencies", "skill-industries": "Industries & Markets", "skill-certs-label": "Certifications",
-                "edu-title": "Education", "edu-degree": "Bachelor's Degree in Multimedia Technology, Marketing & Communication",
                 "ai-title": "Interactive Product Strategist", "ai-desc": "Want to see how I think? Enter a product idea and my AI twin will generate a high-level MVP strategy.",
-                "ai-label": "Enter a Product Idea:", "ai-placeholder": "Type your idea here...", "ai-btn": "✨ Generate Strategy", "ai-result-title": "MVP Strategy Proposal:", "ai-loading": "Analyzing market...",
+                "ai-btn": "✨ Generate Strategy", "ai-loading": "Analyzing market...",
                 "footer-title": "Let's build something impactful."
             },
             es: {
@@ -451,37 +451,21 @@
                 "hero-title-roles": "Product Manager | Product Owner | Project Manager",
                 "hero-title-tagline": "Impulsando Valor de Negocio mediante Entrega Estratégica y Excelencia Ágil",
                 "summary-label": "Resumen Profesional",
-                "hero-desc": "Profesional de Producto y Proyectos orientado a resultados con una sólida trayectoria en entrega estratégica y gestión de productos digitales. Me especializo en cerrar la brecha entre requisitos de negocio complejos y una ejecución técnica de alta calidad. Con experiencia comprobada liderando equipos multidisciplinarios bajo metodologías Ágiles, me enfoco en optimizar el ciclo de vida del producto, gestionar las expectativas de los stakeholders y forjar soluciones escalables que generen valor de negocio medible.",
+                "hero-desc": "Profesional de Producto y Proyectos orientado a resultados con una sólida trayectoria en entrega estratégica y gestión de productos digitales.",
                 "hero-cta": "Contactame",
                 "phil-title": "Filosofía de Producto",
                 "phil-1-title": "Alineación Estratégica y ROI",
-                "phil-1-desc": "Identificando funcionalidades de alto valor que se alinean con los objetivos de nivel C para impulsar el crecimiento empresarial medible. Me enfoco en el 'por qué' para asegurar que cada sprint entregue un ROI tangible.",
+                "phil-1-desc": "Identificando funcionalidades de alto valor que se alinean con los objetivos corporativos.",
                 "phil-2-title": "Discovery y Validación",
-                "phil-2-desc": "Reduciendo el riesgo de los proyectos validando suposiciones mediante investigación de mercado y feedback de usuarios. Creo en fallar rápido durante el Discovery para tener éxito más rápido durante el Delivery.",
-                "phil-3-title": "Estrategia e Implementación de IA",
-                "phil-3-desc": "Diseñando flujos de trabajo impulsados por IA y funcionalidades de producto para optimizar el rendimiento y la eficiencia operativa. Lidero equipos para integrar soluciones de GenAI que resuelven problemas del mundo real.",
+                "phil-2-desc": "Reduciendo el riesgo de los proyectos validando suposiciones mediante investigación.",
+                "phil-3-title": "Estrategia de IA",
+                "phil-3-desc": "Diseñando flujos de trabajo impulsados por IA para optimizar el rendimiento operativo.",
                 "exp-title": "Experiencia Profesional",
                 "cases-title": "Casos de Éxito y Proyectos",
                 "cases-subtitle": "Liderazgo estratégico y entrega de alto impacto en diversos ecosistemas digitales.",
-                "case-tag-insurance": "B2B WP | Salud / Seguros",
-                "case-tag-edtech": "B2B SaaS | EdTech",
-                "case-tag-fintech": "Startup | FinTech",
-                "case-tag-retail": "B2B SaaS | Retail",
-                "case-tag-salesforce": "Salesforce B2C + B2B",
-                "case-tag-health": "B2B SaaS | Salud",
-                "case-tag-marketing": "Marketing | AdTech",
                 "visit-site": "Ver sitio",
-                "case-wellnet-desc": "Optimización de producto para una plataforma líder de seguros médicos. Mejora de la experiencia digital del afiliado y automatización de flujos de reintegros.",
-                "case-nearpod-desc": "Gestión del ciclo de vida del producto para una plataforma global de educación. Foco en escalabilidad de funcionalidades y experiencia de usuario B2B.",
-                "case-pagos-desc": "Desarrollo integral de infraestructura para pasarela de pagos digitales. Foco en seguridad de transacciones, cumplimiento normativo y APIs para desarrolladores.",
-                "case-posneo-desc": "Ecosistema de punto de venta digital para comercios. Optimización del onboarding de comercios y flujos de gestión de inventario.",
-                "case-making-desc": "Entrega E2E de una solución compleja en Salesforce Commerce Cloud. Unificando estrategias digitales mayoristas (B2B) y minoristas (B2C).",
-                "case-bridge-desc": "Implementación de soluciones para la interoperabilidad de datos médicos. Garantizando cumplimiento normativo y flujos de trabajo eficientes.",
-                "case-propac-desc": "Ejecución de tecnologías de marketing basadas en datos para marcas globales. Planificación de recursos y entrega estratégica de proyectos.",
-                "skill-title": "Habilidades y Educación", "skill-core": "Competencias Clave", "skill-industries": "Industrias y Mercados", "skill-certs-label": "Certificaciones",
-                "edu-title": "Educación", "edu-degree": "Licenciatura en Tecnología Multimedia, Marketing y Comunicación",
                 "ai-title": "Estratega de Producto Interactivo", "ai-desc": "¿Querés ver cómo pienso? Ingresá una idea de producto y mi gemelo de IA generará una estrategia de MVP.",
-                "ai-label": "Ingresá una idea:", "ai-placeholder": "Escribí tu idea acá...", "ai-btn": "✨ Generar Estrategia", "ai-result-title": "Propuesta de Estrategia MVP:", "ai-loading": "Analizando mercado...",
+                "ai-btn": "✨ Generar Estrategia", "ai-loading": "Analizando mercado...",
                 "footer-title": "Construyamos algo importante."
             }
         };
@@ -492,13 +476,43 @@
                 const key = el.getAttribute('data-i18n');
                 el.innerHTML = translations[lang][key] || el.innerHTML;
             });
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                el.placeholder = translations[lang][key] || el.placeholder;
-            });
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-es').classList.toggle('active', lang === 'es');
         }
+
+        // --- Lógica del Carrusel Reactivo ---
+        const carousel = document.getElementById('cases-carousel');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateDots() {
+            const scrollPercent = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
+            let activeIndex = 0;
+            
+            if (scrollPercent > 0.33) activeIndex = 1;
+            if (scrollPercent > 0.75) activeIndex = 2;
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active', 'bg-accent');
+                    dot.classList.remove('bg-slate-200');
+                } else {
+                    dot.classList.remove('active', 'bg-accent');
+                    dot.classList.add('bg-slate-200');
+                }
+            });
+        }
+
+        function scrollCarousel(direction) {
+            const scrollAmount = carousel.offsetWidth * 0.8;
+            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        function jumpToSlide(index) {
+            const target = (carousel.scrollWidth - carousel.clientWidth) * (index / 2);
+            carousel.scrollTo({ left: target, behavior: 'smooth' });
+        }
+
+        carousel.addEventListener('scroll', updateDots);
 
         async function generateStrategy() {
             const inputField = document.getElementById('product-idea');
@@ -513,26 +527,14 @@
             outputContainer.classList.remove('hidden');
             outputText.innerHTML = `<p class="text-slate-400 animate-pulse text-center">${translations[currentLang]['ai-loading']}</p>`;
 
-            const systemInstruction = `You are representing Alejandro Illes, a Senior Product Leader and Project Manager with 20 years of experience. 
-            Response MUST be in the language: ${currentLang.toUpperCase()}.
-            Provide a professional, concise 3-step MVP strategy (Business Value, Core Features, Delivery Plan). Focus on ROI and efficiency.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: promptText }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
-            };
-
+            const systemInstruction = `You are representing Alejandro Illes, a Senior Product Leader. Provide a concise 3-step MVP strategy.`;
+            const payload = { contents: [{ parts: [{ text: promptText }] }], systemInstruction: { parts: [{ text: systemInstruction }] } };
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
             
             try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                 const data = await response.json();
-                const result = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error.";
-                outputText.innerHTML = result.replace(/\n/g, '<br>');
+                outputText.innerHTML = (data.candidates?.[0]?.content?.parts?.[0]?.text || "Error.").replace(/\n/g, '<br>');
             } catch (error) {
                 outputText.innerHTML = "Error loading strategy.";
             }
@@ -540,7 +542,10 @@
             btn.disabled = false;
         }
 
-        window.onload = () => changeLanguage('en');
+        window.onload = () => {
+            changeLanguage('en');
+            updateDots();
+        };
     </script>
 </body>
 </html>
